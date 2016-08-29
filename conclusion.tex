@@ -1,0 +1,20 @@
+% !TEX root = da.tex
+\section{Conclusion} \label{sConclusion}
+
+Unsupervised domain adaptation is an important yet quite challenging problem. Our work has shown that it is very effective to address it by leveraging and modeling intrinsic structures such as subspaces and landmarks in the data.  We propose  kernel-based approaches for unsupervised domain adaptation. 
+The key insight behind our approaches is to learn kernel functions that correspond to (implicitly defined) feature spaces that are robust to the mismatch between the source and the target domains. 
+
+Our first approach, the geodesic flow kernel (GFK), exploits the low-dimensional subspace structures in the visual data and measures similarity between data points in a way that is insensitive to each domain's idiosyncrasies.  It is simple to implement, free of hyperparmeter tuning, and performs very well in benchmark tasks. Our second approach builds on the success of GFK and exploits the landmark structures between two domains. Essentially, the landmarks are data points from the source domain but also serve as a bridge to  the target domain. The landmarks enable analyzing distribution similarity on multiple scales, hypothesizing a basis for invariant features, and discriminatively learning features/kernels. On benchmark tasks for visual recognition, this approach consistently outperforms  others (including the approach of GFK), often by large margins.  Furthermore, we show that the landmark approach is strongest when using the GFK as its component kernel.
+
+This chapter has just scratched the surface of the domain adaptation problem in visual recognition. While we have shown that learning kernels is powerful in discovering feature spaces where the two domains are similar, learning kernels is potentially useful for answering more challenging problems: what is a domain?  and how can we characterize the difference between domains? Our paper~\cite{our2013reshape} sheds some light on these questions.  We challenge the conventional wisdom and practice that equates a dataset to a domain. Instead, we argue that vision datasets are likely a m\'{e}lange of multiple latent and heterogeneous domains. We propose new learning algorithms that identify the latent domains in a vision dataset. We then show that using the resulting domains to adapt is more effective than using the original dataset. 
+
+
+Overall, the kernel learning framework opens the door for future research towards domain adaptation. For instance, GFK is just one possibility of averaging inner products from multiple subspaces interpolating between the source and target domains. It would be interesting to explore other choices. The auxiliary tasks in the landmark-based approach can be regarded as multiple sources, and multiple-source domain adaptation algorithms could be explored~\cite{dam,dredze08multi} jointly with the landmarks.
+
+{
+
+%Our success there thus validates again the central thesis that inspires the landmark approach. Namely, not every data instance has the same adaptability, as they all could come from unknown distributions with different degrees of proximity to the target domain. Thus, to be effective in adaptation, it is desirable \emph{not} to treat the source domain as being monolithically homogeneous. %It would be interesting to explore how to use kernel learning  to identify feature spaces that maximally \emph{distinguish} domains. We leave that for future research.
+}
+
+
+%%%% For future work, we plan to exploit other structures for adaptation.

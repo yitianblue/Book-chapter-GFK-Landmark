@@ -1,0 +1,301 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a contributed volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{rotating}
+\documentclass[graybox]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+
+
+% see the list of further useful packages
+% in the Reference Guide
+
+%%%%%%%%%%% New packages and commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{times,appendix}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{color,url}
+%\usepackage[sort&compress]{natbib}
+%\usepackage{hyperref}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\usepackage{rotating,lscape,pdflscape}
+\usepackage{wrapfig}
+\usepackage{sidecap}
+\sidecaptionvpos{figure}{c}
+
+%%% load AMS-Latex Package
+%\usepackage{amsmath,amsfonts}
+%\usepackage{amsthm,amssymb,amsopn}
+%\usepackage{amsthm,amssymb,amsopn}
+\usepackage{amsmath,amssymb,amsopn}
+\usepackage{bm} % bold symbol
+\usepackage{booktabs, tabu}
+
+% define fonts
+\newcommand{\vct}[1]{\boldsymbol{#1}} % vector
+\newcommand{\mat}[1]{\boldsymbol{#1}} % matrix
+
+%%%% Special math symbols
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\R}{\field{R}} % real domain
+\newcommand{\C}{\field{C}} % complex domain
+\newcommand{\F}{\field{F}} % functional domain
+%\newcommand{\T}{^{\top}\!\!} % transpose
+\newcommand{\T}{^{\textrm T}} % transpose
+\newcommand{\TN}{^{-\textrm T}} % transpose
+
+
+%%% define constant
+\newcommand{\cst}[1]{\mathsf{#1}}
+
+%% operator in linear algebra, functional analysis
+\newcommand{\inner}[2]{#1\cdot #2}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\twonorm}[1]{\|#1\|_2^2}
+% operator in functios, maps such as M: domain1 --> domain 2
+\newcommand{\Map}[1]{\mathcal{#1}}
+
+% operator in probability: expectation, covariance,
+\newcommand{\ProbOpr}[1]{\mathbb{#1}}
+% independence
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+% conditional independence
+\newcommand{\cind}[3]{{#1} \independent{#2}\,|\,#3}
+% conditional expectation
+\newcommand{\cndexp}[2]{\ProbOpr{E}\,[ #1\,|\,#2\,]}
+
+% operator in optimization
+\DeclareMathOperator{\argmax}{arg\,max}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand{\todo}[1]{{\color{red}#1}}
+
+
+% environment
+\newtheorem{thm}{Theorem}
+%\newtheorem{lemma}{Lemma}
+
+\newcommand{\eat}[1]{}
+
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+
+%%%%%%% ANNOTATING COMMAND %%%%%%%%%%%%%
+
+\newcommand{\source}{{S}}
+\newcommand{\target}{{T}}
+\newcommand{\landmark}{\mathcal{L}^q}
+\newcommand{\mkltrain}{\mathcal{D}_{\textsc{train}}}
+\newcommand{\mkltest}{\mathcal{D}_{\textsc{dev}}}
+\newcommand{\src}{\mathcal{D}_{S}}
+\newcommand{\tgt}{\mathcal{D}_{T}}
+\newcommand{\ltarget}{\mathcal{D}_\mathcal{L}}
+\newcommand{\utarget}{\mathcal{D}_\mathcal{U}}
+\newcommand{\srcbase}{\mat{P}_{S}}
+\newcommand{\tgtbase}{\mat{P}_{T}}
+\newcommand{\stbase}{\mat{P}_{{S}+{T}}}
+\newcommand{\srcpca}{\textbf{PCA}_{S}}
+\newcommand{\srcpls}{\textbf{PLS}_{S}}
+\newcommand{\tgtpca}{\textbf{PCA}_{T}}
+\newcommand{\stpca}{\textbf{PCA}_{{S}+{T}}}
+\newcommand{\stpls}{\textbf{PLS}_{{S}+{T}}}
+\newcommand{\srccomp}{\mat{R}_{S}}
+\newcommand{\kernel}{\mat{G}}
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+
+\newcommand{\OrigFeat}{\textsc{no adapt}}
+\newcommand{\PCAs}{\textsc{pca}$_{{S}}$}
+\newcommand{\PCAt}{\textsc{pca}$_{{T}}$}
+\newcommand{\PCAst}{\textsc{pca}$_{{S}+{T}}$}
+\newcommand{\PLSs}{\textsc{pls}$_{{S}}$}
+\newcommand{\PLSt}{\textsc{pls}$_{{T}}$}
+\newcommand{\PLSst}{\textsc{pls}$_{{S}+{T}}$}
+%\newcommand{\discSample}{{{Discrete Sample}}}
+\newcommand{\ICCV}{\textsc{gfs}}
+\newcommand{\ECCV}{\textsc{metric}}
+\newcommand{\GEO}{\textsc{gfk}(\PCAs, \PCAt)}
+\newcommand{\plsGEO}{\textsc{gfk}(\PLSs, \PCAt)}
+\newcommand{\plsGEOpls}{\textsc{gfk}(\PLSs, \PLSt)}
+\newcommand{\GFK}{\textsc{gfk}}
+\newcommand{\caltech}{{\textsc{caltech}}}
+\newcommand{\amazon}{{\textsc{amazon}}}
+\newcommand{\dslr}{{\textsc{dslr}}}
+\newcommand{\webcam}{{\textsc{webcam}}}
+\newcommand{\bline}{{\textsc{baseline}}}
+\newcommand{\ours}{{\textsc{landmark}}}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\etal}{\emph{et al.}}
+
+\newcommand{\FS}[1]{{\color{red}#1}}
+%\newcommand{\FS}[1]{}
+\newcommand{\KG}[1]{{\color{blue} KG: #1}}
+%\newcommand{\KG}[1]{}
+\newcommand{\BG}[1]{{\color{magenta} #1}}
+%\newcommand{\BG}[1]{}
+
+% Bib aliases
+\makeatletter
+\def\@citex[#1]#2{\leavevmode
+  \let\@citea\@empty
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{,\penalty\@m\ }%
+\edef\magic##1{\let##1\expandafter\noexpand\csname bibalias@\@citeb\endcsname}%
+\magic\tmp \ifx\tmp\relax\else \let\@citeb\tmp\fi
+     \edef\@citeb{\expandafter\@firstofone\@citeb\@empty}%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\hbox{\reset@font\bfseries ?}%
+       \G@refundefinedtrue
+       \@latex@warning
+         {Citation `\@citeb' on page \thepage \space undefined}}%
+       {\@cite@ofmt{\csname b@\@citeb\endcsname}}}}{#1}}
+\def\bibalias#1#2{\expandafter\def\csname bibalias@#1\endcsname{#2}}
+\makeatother
+
+\bibalias{shimodaira00shift}{ShimodairaJSPI00Improving}
+\bibalias{daume06domain}{DaumeJAIR06Domain}
+\bibalias{pan2009survey}{PanTKDE10Survey}
+\bibalias{gretton09kmm}{GrettonBC09Covariate}
+\bibalias{gopalan2011domain}{GopalanICCV11Domain}
+\bibalias{gong12gfk}{GongCVPR12Geodesic}
+\bibalias{chen11cotrain}{ChenNIPS11Cotraining}
+\bibalias{daume10co}{DaumeNIPS10co}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{saenko2010adapting}{SaenkoECCV10Adapting}
+\bibalias{daume07easy}{DaumeX09Frustratingly}
+\bibalias{blitzer11domain}{BlitzerAISTATS11Domain}
+\bibalias{bendavid07domain}{BendavidNIPS07Analysis}
+\bibalias{BenDavid10Adaptation}{BenDavidML10A}
+\bibalias{tca}{PanTNN11Domain}
+\bibalias{mansour09domain}{MansourCOLT09Domain}
+\bibalias{mansour09multiple}{MansourUAI09multiple}
+\bibalias{lanckriet04kernel}{LanckrietJMLR04kernel}
+\bibalias{mkl_obj}{VedaldiICCV09multiple}
+\bibalias{ham2004kernel}{HamICML04kernel}
+\bibalias{roweis2000nonlinear}{RoweisSCI00nonlinear}
+\bibalias{weinberger2006unsupervised}{WeinbergerIJCV06unsupervised}
+\bibalias{hamm2008grassmann}{HammICML08grassmann}
+\bibalias{gong13landmark}{GongICML13Connecting}
+\bibalias{gretton2006kernel}{GrettonNIPS06kernel}
+\bibalias{Caltech256}{Griffin07Caltech}
+\bibalias{kulisyou}{KulisCVPR11What}
+\bibalias{bay2006surf}{BayECCV06Surf}
+\bibalias{PLS}{Hastie09Elements}
+\bibalias{huang07correcting}{HuangNIPS07Correcting}
+\bibalias{ando05}{AndoJMLR05framework}
+\bibalias{li2012discriminative}{LiCVPR12discriminative}
+\bibalias{zheng2012grassmann}{ZhengCVPR12Grassmann}
+\bibalias{bruzzone2010domain}{BruzzonePAMI10Domain}
+\bibalias{shi2012}{ShiICML12Informationtheoretical}
+\bibalias{dam}{DuanTNNLS12Domain}
+\bibalias{dredze08multi}{DredzeEMNLP08multi}
+\bibalias{our2013reshape}{GongNIPS13Reshaping}
+\bibalias{gopalan2013learning}{GopalanCVPR13learning}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+\bibalias{bergamo09weak}{BergamoNIPS10Exploiting}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{2pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{2pt}
+
+\title*{Geodesic Flow Kernel and Landmarks: 
+Kernel Methods for Unsupervised Domain Adaptation}
+\titlerunning{Kernel Methods for Unsupervised Domain Adaptation}
+% Use \titlerunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\author{Boqing Gong, Kristen Grauman, and Fei Sha}
+% Use \authorrunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\institute{Boqing Gong \at University of Central Florida, Orlando, FL, 32816, \email{boqinggong@gmail.com}
+\and Kristen Grauman \at  University of Texas at Austin, TX, 78712, \email{grauman@cs.utexas.edu}
+\and Fei Sha \at University of California at Los Angeles, CA, 90095, \email{feisha.work@gmail.com}}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\abstract{Domain adaptation aims to correct the mismatch in statistical properties between the source domain on which a classifier is trained and the target domain to which the classifier is to be applied. In this chapter, we address the challenging scenario of \emph{unsupervised domain adaptation}, where the target domain does not provide any annotated data to assist in adapting the classifier. Our strategy is to learn robust features which are resilient to the mismatch across domains and then  use them  to construct classifiers that will perform well on the target domain. 
+\newline \indent
+To this end, we propose novel kernel learning approaches to inferring such features for adaptation.  Concretely, we explore two closely related directions. In the first direction, we propose \emph{unsupervised learning} of a geodesic flow kernel (GFK). GFK summarizes the inner products in an infinite sequence of feature subspaces that smoothly interpolates between the source and target domains. In the second direction, we propose \emph{supervised learning} of a kernel that discriminatively combines  multiple base GFKs. Those base kernels model the source and the target domains at fine-grained granularities. In particular, each base kernel pivots on a different set of landmarks -- the most useful data instances that reveal the similarity between the source and the target domains, thus bridging them to achieve adaptation. 
+\newline \indent
+Our approaches are computationally convenient and are capable of learning features/kernels and classifiers discriminatively without demanding labeled data from the target domain.  In extensive empirical studies on standard benchmark object recognition datasets, our approaches outperform a variety of competing methods.}
+
+
+
+%%%%%%% MAIN BODY %%%%%%%%%%%%%
+\input{intro}
+\input{gfk}
+\input{landmark}
+\input{exp}
+%\input{related}
+\input{conclusion}
+
+
+
+
+%%%%%%% ACKNOWLEDGEMENTS %%%%%%%%%%%%%
+\begin{acknowledgement}
+This work is partially supported by DARPA D11-AP00278 and NSF IIS-1065243 (B.~G.\ and F.~S.), and ONR ATL \#N00014-11-1-0105 (K.~G.). The Flickr images in Fig.~1 are under a CC Attribution 2.0 Generic license, courtesy of berzowska, IvanWalsh.com, warrantedarrest, HerryLawford, yuichi.sakuraba, zimaowuyu, GrahamAndDairne, Bernt Rostad, Keith Roper, flavorrelish, and deflam.
+\end{acknowledgement}
+
+
+
+
+%%%%%%% References %%%%%%%%%%%%%
+
+\bibliographystyle{plain}
+\bibliography{DomAd,extra}
+
+
+\end{document}
